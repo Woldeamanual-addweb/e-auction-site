@@ -1,0 +1,4 @@
+name: First Module
+type: module
+core: '8.x'
+description: First Drupal Module

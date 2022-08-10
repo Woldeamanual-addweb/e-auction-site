@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function movielisting_theme($existing, $type, $theme, $path)
+{
+    return [
+        'movielisting' => [
+            'variables' => ['content' => Null]
+        ]
+    ];
+}

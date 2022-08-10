@@ -1,0 +1,6 @@
+# azuresimple.newpage:
+#   title: 'Simple Stuff'
+#   description: 'Link to Simple Stuff'
+#   route_name: azuresimple.content
+#   weight: 10
+#   menu_name: main

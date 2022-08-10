@@ -1,0 +1,31 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implementation of hool_form_alter
+ */
+
+function azuresimple_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    if ($form_id == 'comment_comment_form') {
+        $form['actions']['save']['#value'] = t('Place Bid');
+    }
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function azuresimple_help($route_name, RouteMatchInterface $route_match)
+{
+
+    switch ($route_name) {
+        case 'help.page.azuresimple':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('This is an example module.') . '</p>';
+            return $output;
+        default:
+    }
+}

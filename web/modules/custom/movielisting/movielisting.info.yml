@@ -1,0 +1,6 @@
+name: Movie Listings
+description: Lists all movies.
+core: 8.x
+package: CustomModules
+type: module
+

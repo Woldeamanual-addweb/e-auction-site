@@ -1,0 +1,3 @@
+services:
+  azuresimple.salutation:
+    class: Drupal\azuresimple\AzureSimpleSalutation
