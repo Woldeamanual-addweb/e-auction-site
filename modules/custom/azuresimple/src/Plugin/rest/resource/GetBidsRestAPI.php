@@ -16,11 +16,11 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 
 /**
- * Provides Get Bid API for Content Based on URL.
+ * Provides Get Bids Table API for Content Based on URL.
  *
  * @RestResource(
  *   id = "get_bids_rest_resource",
- *   label = @Translation( Bid Api"),
+ *   label = @Translation("Bids Table Api"),
  *   uri_paths = {
  *     "canonical" = "/api/bids",
  *     "create" = "api/bids" 
@@ -40,10 +40,9 @@ class GetBidsRestAPI extends ResourceBase {
   public function post($data) {
        if($data){
           try{
-         $nid =$data['nid'];
-
+        $nid =$data['nid'];
         $database = Database::getConnection();
-         $query = $database->select('azuresimple', 'bids')
+        $query = $database->select('azuresimple', 'bids')
             ->fields('bids', ['id', 'uid', 'nid', 'bid'])
             ->condition('bids.nid', $nid, '=')
             ->execute()->fetchAll(\PDO::FETCH_OBJ);
@@ -59,6 +58,7 @@ class GetBidsRestAPI extends ResourceBase {
 
             ];
 
+            // $rows[] = $row;
         }
       return new ResourceResponse([ "Bids"=>$rows,'error'=>false]);
 
