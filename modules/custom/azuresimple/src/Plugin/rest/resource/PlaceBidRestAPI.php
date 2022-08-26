@@ -51,12 +51,13 @@ class PlaceBidRestAPI extends ResourceBase {
             'uid' => $user->id(),
             'created' => time(),
         ))->execute();
-                 return new ResourceResponse($data);
+           $messenger = ['message'=>"Your bid placed successfully",'error'=>false];
+           return new ResourceResponse($messenger);
 
 
 
            }catch(EntityStorageException $e){
-              $messenger = ['message'=>"Try Again some error"];
+              $messenger = ['message'=>"Try Again some error",'error'=>true];
               return new ResourceResponse($messenger);
 
            }
