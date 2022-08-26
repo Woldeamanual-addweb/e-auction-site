@@ -6,12 +6,14 @@ use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Url;
 use Drupal\rest\Plugin\ResourceBase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Drupal\node\Entity\Node;
 use Drupal\rest\ModifiedResourceResponse;
+use Drupal\rest\ResourceResponse;
 
 /**
  * Provides Placing Bid API for Content Based on URL.
@@ -20,7 +22,9 @@ use Drupal\rest\ModifiedResourceResponse;
  *   id = "get_bid_rest_resource",
  *   label = @Translation("Place Bid Api"),
  *   uri_paths = {
- *     "canonical" = "/api/placeBid"
+ *     "canonical" = "/api/placeBid",
+ *     "create" = "api/placeBid" 
+
  *   }
  * )
  */
@@ -33,25 +37,34 @@ class PlaceBidRestAPI extends ResourceBase {
    * @return \Drupal\rest\ResourceResponse
    *   Returning rest resource.
    */
-  public function post() {
-        $node = \Drupal::routeMatch()->getParameter('node');
-        $nid = $node->nid->value;
-        $messenger = \Drupal::service('messenger');
-        if ($node->get('field_dea')->value - microtime(True) < 0) {
-            $messenger->addMessage($this->t('Sorry the auction is closed.'));
-            return;
-        }
+  public function post($data) {
+
+        if($data){
+         try{
+        $nid=$data['nid'];
+        $amount=$data['amount'];
         $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
 
-        // db_insert('azuresimple')->fields(array(
-        //     'bid' => 10000,
-        //     'nid' => 1,
-        //     'uid' => $user->id(),
-        //     'created' => time(),
-        // ))->execute();
+        db_insert('azuresimple')->fields(array(
+            'bid' => $amount,
+            'nid' => $nid,
+            'uid' => $user->id(),
+            'created' => time(),
+        ))->execute();
+                 return new ResourceResponse($data);
 
 
-        $messenger->addMessage($this->t('Your Bid has been placed. @currenttime', array('@currenttime' => date('m/d/y H:i:s'))));
+
+           }catch(EntityStorageException $e){
+              $messenger = ['message'=>"Try Again some error"];
+              return new ResourceResponse($messenger);
+
+           }
+        }
+       
+
+
+      //   $messenger->addMessage($this->t('Your Bid has been placed. @currenttime', array('@currenttime' => date('m/d/y H:i:s'))));
     
 
     // if (\Drupal::request()->query->has('url') ) {
