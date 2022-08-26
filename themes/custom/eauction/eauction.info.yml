@@ -1,0 +1,19 @@
+name: eauction
+description: "A Drupal auction site theme."
+type: theme
+core: 8.x
+base theme: bartik
+# regions:
+#   top_bar: Top Bar
+#   navigation: "Navigation"
+#   header: "Header"
+#   highlighted: "Highlighted"
+#   content: "Content"
+#   footer: "Footer"
+#   page_top: "Page top"
+#   page_bottom: "Page bottom"
+
+libraries:
+  - eauction/global-styling
+  - eauction/global-js
+  - eauction/fonts

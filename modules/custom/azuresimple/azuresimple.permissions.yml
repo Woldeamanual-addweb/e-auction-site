@@ -1,7 +1,9 @@
 view bid:
-  title: 'View Bid Form'
-  description: 'View the Bid Form'
+  title: "View Bid Form"
+  description: "View the Bid Form"
 access bid report:
-  title: 'Access List of Bid Form'
-  description: 'View all Bids Submitted'
-  
+  title: "Access List of Bid Form"
+  description: "View all Bids Submitted"
+
+access place bid:
+  title: "Allow access to place bid"

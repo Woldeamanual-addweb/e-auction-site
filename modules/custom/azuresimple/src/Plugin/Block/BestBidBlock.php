@@ -50,7 +50,6 @@ class BestBidBlock extends BlockBase
 
             ];
 
-            // $rows[] = $row;
         }
         $headers = array(
 

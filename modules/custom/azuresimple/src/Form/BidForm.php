@@ -47,11 +47,14 @@ class BidForm extends FormBase
             $amount = $bid->bid;
             $user = $bid->uid;
 
-                
+
         
         }
-            echo "<script>console.log($user);</script>";
-
+            if(empty($amount)){
+                 $messenger->addMessage($this->t('There is no Winner.'));
+            return $form;
+            }
+            
             $messenger->addMessage($this->t('The winner is @winner.',array('@winner'=>$amount)));
             return $form;
         }

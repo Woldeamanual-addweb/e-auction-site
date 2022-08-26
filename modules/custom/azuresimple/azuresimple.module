@@ -29,3 +29,14 @@ function azuresimple_help($route_name, RouteMatchInterface $route_match)
         default:
     }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function azuresimple_theme($existing, $type, $theme, $path) {
+  return [
+    'my_template' => [
+      'variables' => ['test_var' => NULL],
+    ],
+  ];
+}

@@ -44,7 +44,7 @@ class DeleteForm extends FormBase
             '#value' => $this->t('Delete Bid'),
             '#button_type' => 'warning',
             '#attributes' => array('onclick' => 'if(!confirm("You sure ?")){return false;}')
-        ];
+        ]; 
       
 
         $form['nid'] = [

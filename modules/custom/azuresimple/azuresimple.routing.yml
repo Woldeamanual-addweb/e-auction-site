@@ -1,15 +1,7 @@
-azuresimple.content:
-  path: '/simple'
-  defaults:
-    _controller: '\Drupal\azuresimple\Controller\FirstController::content'
-    _title: 'My first page and menu item'
-  requirements:
-    _permission: 'access content '
-
 azuresimple.bid:
-  path: '/placebid'
+  path: "/placebid"
   defaults:
     _form: '\Drupal\azuresimple\Form\BidForm'
-    _title: ''
+    _title: ""
   requirements:
-    _permission: 'access content'
+    _permission: "access content"
