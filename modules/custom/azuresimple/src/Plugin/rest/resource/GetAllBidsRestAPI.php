@@ -38,7 +38,6 @@ class GetAllBidsRestAPI extends ResourceBase {
    *   Returning rest resource.
    */
   public function post($data) {
-       if($data){
           try{
         $database = Database::getConnection();
         $query = $database->select('azuresimple', 'bids')
@@ -51,9 +50,9 @@ class GetAllBidsRestAPI extends ResourceBase {
 
             $rows[] = [
                 'id' => $bid->id,
-                'uid' => $bid->uid,
+                'bidder' => \Drupal\user\Entity\User::load($bid->uid),
                 'bid' => $bid->bid,
-                'nid' => \Drupal\node\Entity\Node::load($bid->nid)
+                'node' => \Drupal\node\Entity\Node::load($bid->nid)
 
 
             ];
@@ -68,7 +67,7 @@ class GetAllBidsRestAPI extends ResourceBase {
         return new ResourceResponse($messenger);
 
           }
-       }
+       
      
        
 

@@ -53,7 +53,7 @@ class GetBidsRestAPI extends ResourceBase {
 
             $rows[] = [
                 'id' => $bid->id,
-                'uid' => $bid->uid,
+                'uid' => \Drupal\user\Entity\User::load($bid->uid),
                 'bid' => $bid->bid,
 
             ];
