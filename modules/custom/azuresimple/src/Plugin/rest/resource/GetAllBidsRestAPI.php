@@ -16,20 +16,20 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 
 /**
- * Provides Get Best Bid API for Content Based on URL.
+ * Provides Get All Bids Table API for Content Based on URL.
  *
  * @RestResource(
- *   id = "get_best_bid_rest_resource",
- *   label = @Translation("Best Bid Api"),
+ *   id = "get_all_bids_rest_resource",
+ *   label = @Translation("All Bids Table Api"),
  *   uri_paths = {
- *     "canonical" = "/api/bestbid",
- *     "create" = "api/bestbid" 
+ *     "canonical" = "/api/allbids",
+ *     "create" = "api/allbids" 
 
  *   }
  * )
  */
 
-class GetBestBidRestAPI extends ResourceBase {
+class GetAllBidsRestAPI extends ResourceBase {
 
 /**
    * Responds to entity Post requests.
@@ -40,26 +40,26 @@ class GetBestBidRestAPI extends ResourceBase {
   public function post($data) {
        if($data){
           try{
-         $nid =$data['nid'];
-
+        $nid =$data['nid'];
         $database = Database::getConnection();
         $query = $database->select('azuresimple', 'bids')
             ->fields('bids', ['id', 'uid', 'nid', 'bid'])
-            ->condition('bids.nid', $nid, '=')
-            ->orderBy('bids.bid', 'DESC')
-            ->range(0, 1)
             ->execute()->fetchAll(\PDO::FETCH_OBJ);
-       $rows = array();
-      foreach ($query as $bid) {
+
+        $rows = array();
+
+        foreach ($query as $bid) {
 
             $rows[] = [
+                'id' => $bid->id,
+                'uid' => $bid->uid,
                 'bid' => $bid->bid,
-            
+                'nid' => $bid->nid
 
             ];
 
         }
-      return new ResourceResponse(["Best"=>$rows,'error'=>false]);
+      return new ResourceResponse([ "All_Bids"=>$rows,'error'=>false]);
 
 
         }catch(EntityStorageException $e){

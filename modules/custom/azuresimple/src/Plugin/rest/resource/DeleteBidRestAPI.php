@@ -37,13 +37,6 @@ class DeleteBidRestAPI extends ResourceBase {
    *   Returning rest resource.
    */
   public function post($data) {
-        // $node = \Drupal\node\Entity\Node::load(\Drupal::request()->query->has('nid'));
-        // if ($node->get('field_dea')->value - microtime(True) < 0) {
-        //     $messenger->addMessage($this->t('Sorry the auction is closed.'));
-        //       $response = ['message' => 'Hello, this is a rest service'];
-        //       return new ModifiedResourceResponse($response);
-        // }
-
         $user = \Drupal::currentUser()->id();
         $nid = $data['nid'];
       try{
@@ -64,31 +57,6 @@ class DeleteBidRestAPI extends ResourceBase {
 
       }
        
-
-    
-
-    // if (\Drupal::request()->query->has('url') ) {
-      
-    //   $url = \Drupal::request()->query->get('url');
-
-    //   if (!empty($url)) {
-        
-    //     $query = \Drupal::entityQuery('node')
-    //       ->condition('field_unique_url', $url);
-        
-    //     $nodes = $query->execute();
-        
-    //     $node_id = array_values($nodes);
-
-        
-    //     if (!empty($node_id)) {
-        
-    //       $data = Node::load($node_id[0]);
-    //       return new ModifiedResourceResponse($data);
-
-    //   		}
-    //   	}
- 	// }
   
   }
 

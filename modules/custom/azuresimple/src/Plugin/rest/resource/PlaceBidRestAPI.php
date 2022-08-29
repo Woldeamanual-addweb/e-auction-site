@@ -65,31 +65,7 @@ class PlaceBidRestAPI extends ResourceBase {
        
 
 
-      //   $messenger->addMessage($this->t('Your Bid has been placed. @currenttime', array('@currenttime' => date('m/d/y H:i:s'))));
     
-
-    // if (\Drupal::request()->query->has('url') ) {
-      
-    //   $url = \Drupal::request()->query->get('url');
-
-    //   if (!empty($url)) {
-        
-    //     $query = \Drupal::entityQuery('node')
-    //       ->condition('field_unique_url', $url);
-        
-    //     $nodes = $query->execute();
-        
-    //     $node_id = array_values($nodes);
-
-        
-    //     if (!empty($node_id)) {
-        
-    //       $data = Node::load($node_id[0]);
-    //       return new ModifiedResourceResponse($data);
-
-    //   		}
-    //   	}
- 	// }
   
   }
 
