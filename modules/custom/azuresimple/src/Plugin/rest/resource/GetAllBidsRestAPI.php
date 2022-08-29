@@ -40,7 +40,6 @@ class GetAllBidsRestAPI extends ResourceBase {
   public function post($data) {
        if($data){
           try{
-        $nid =$data['nid'];
         $database = Database::getConnection();
         $query = $database->select('azuresimple', 'bids')
             ->fields('bids', ['id', 'uid', 'nid', 'bid'])
@@ -54,7 +53,8 @@ class GetAllBidsRestAPI extends ResourceBase {
                 'id' => $bid->id,
                 'uid' => $bid->uid,
                 'bid' => $bid->bid,
-                'nid' => $bid->nid
+                'nid' => \Drupal\node\Entity\Node::load($bid->nid)
+
 
             ];
 
